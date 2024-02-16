@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import router from "./route/sendMessage.js";
+import path from "path";
+
 
 const app = express();
 app.use(express.json());
 
+const __dirname = path.resolve()
 
 dotenv.config()
 
@@ -17,7 +20,11 @@ app.listen(3000, () => {
 })
 
 
-app.use('/api/user', router)
+app.use('/api/user', router);
+app.use(express.static(path.join(__dirname, '/protfolio/dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'protfolio', 'dist', 'index.html'))
+})
 
 
 app.use((err, req, res, next) => {
