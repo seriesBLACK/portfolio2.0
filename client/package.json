@@ -13,6 +13,7 @@
     "@tabler/icons-react": "^2.47.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
+    "cjs": "^0.0.11",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.3",
