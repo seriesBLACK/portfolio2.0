@@ -8,9 +8,9 @@ import path from "path";
 const app = express();
 app.use(express.json());
 
-const __dirname = path.resolve()
+const __dirname = path.resolve();
 
-dotenv.config()
+dotenv.config();
 
 mongoose.connect(process.env.DB).then(() => console.log("db is connected")).catch((err) => console.log(err))
 
@@ -21,11 +21,12 @@ app.listen(3000, () => {
 
 
 app.use('/api/user', router);
-app.use(express.static(path.join(__dirname, '/protfolio/dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'protfolio', 'dist', 'index.html'))
-})
 
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500
